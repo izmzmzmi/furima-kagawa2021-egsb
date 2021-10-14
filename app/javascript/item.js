@@ -4,8 +4,8 @@ function count () {
     const inputPrice = itemPrice.value;
     const addTaxPrice = document.getElementById("add-tax-price");
     const profit = document.getElementById("profit");
-    addTaxPrice.innerHTML = inputPrice * 0.1;
-    profit.innerHTML = inputPrice - inputPrice * 0.1;
+    addTaxPrice.innerHTML = Math.round(inputPrice * 0.1).toLocaleString();
+    profit.innerHTML = Math.round(inputPrice - inputPrice * 0.1).toLocaleString();
   });
 };
 
