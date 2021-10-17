@@ -3,7 +3,8 @@
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
-    <h2 class="name">
+    <h2 class= name>
+     <%= @item.name %>
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image.variant(resize: '500x500') ,class:"item-box-img" %>
