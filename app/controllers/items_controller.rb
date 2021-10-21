@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index, :show]
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :set_item, only: [:edit, :update, :show]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -24,12 +24,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
     redirect_to action: :index unless @item.user_id == current_user.id
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.update(item_params)
       redirect_to action: :show
@@ -39,7 +37,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   private
@@ -49,6 +46,9 @@ class ItemsController < ApplicationController
                                  :scheduled_delivery_id, :price, :image).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
   # #def move_to_index
   #   #unless user_signed_in?
   #     #redirect_to action: :index
