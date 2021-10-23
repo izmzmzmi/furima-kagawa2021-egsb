@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
-    @order_address = OrderAddress.new
+    unless user_signed_in? && @item.user_id != current_user.id && !(@item.order.present?)
+      redirect_to root_path
+    else
+      @order_address = OrderAddress.new
+    end
   end
 
   def new
-    @order_address = OrderAddress.new
   end
 
   def create
