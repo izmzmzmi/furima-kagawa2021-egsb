@@ -50,5 +50,7 @@ test:
 production:
   <<: *default
   database: furima_kagawa2021_egsb_production
-  username: furima_kagawa2021_egsb
-  password: <%= ENV['FURIMA_KAGAWA2021_EGSB_DATABASE_PASSWORD'] %>
+  username: root
+  password:  <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
+
